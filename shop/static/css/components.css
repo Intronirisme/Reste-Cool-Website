@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    background-color: black;
+    overflow-x: hidden;
+}
+
+.hallway {
+    position: relative;
+    z-index: 3;
+    top: var(--z);
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+    -moz-perspective: 1000px;
+
+    perspective-origin: center;
+    -webkit-perspective-origin: center;
+    -moz-perspective-origin: center;
+
+    transform-style: preserve-3d;
+}
+
+.wallRight {
+    position: absolute;
+    left: 100%;
+    transform-origin: left;
+    width: var(--d);
+    height: 100%;
+    transform: translateZ(var(--z)) rotateY(90deg);
+}
+
+.wallBottom {
+    position: absolute;
+    top: 100%;
+    transform-origin: top;
+    width: 100%;
+    height: var(--d);
+    transform: translateZ(var(--z))  rotateX(-90deg);
+}
+
+.wallLeft {
+    position: absolute;
+    right: 100%;
+    transform-origin: right;
+    width: var(--d);
+    height: 100%;
+    transform: translateZ(var(--z)) rotateY(-90deg);
+}
+
+.wallTop {
+    position: absolute;
+    bottom: 100%;
+    transform-origin: bottom;
+    width: 100%;
+    height: var(--d);
+    transform: translateZ(var(--z)) rotateX(90deg);
+}
+
+.collection {
+    position: absolute;
+    top: var(--z);
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 2;
+    perspective: 1000px;
+    -webkit-perspective: 1000px;
+    -moz-perspective: 1000px;
+    
+    perspective-origin: center;
+    -webkit-perspective-origin: center;
+    -moz-perspective-origin: center;
+    
+    transform-style: preserve-3d;
+}
+
+.content {
+    transform: translateZ(calc(var(--z) - var(--d)));
+    /* not sure */
+    /* height: var(--h); */
+}

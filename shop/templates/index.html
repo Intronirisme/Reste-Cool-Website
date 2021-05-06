@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reste Cool, jeune asso de skate bordelaise">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/components.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    {% for collection in collections %}
+        <template id="accueil-{{ collection.accueil.name }}" data-depth="{{ collection.accueil.depth }}">
+            <div class="hallway perspective">
+                {{ collection.accueil.template|safe }}
+            </div>
+        </template>
+        <template id="collec-{{ collection.name }}">
+            <style>
+                .content {
+                    background: top / cover repeat-y url("{{ collection.background.url }}");
+                }
+            </style>
+            <div id="test" class="coverContainer">
+                <img id="cover" src="{{ collection.cover.url }}" alt="{{ collection.title }} cover">
+            </div>
+            <div class="articleContainer">
+                {% for article in collection.articles.all %}
+                    <div class="article">
+                        <div class="image" style="--img: url('{{ article.image.url }}');"></div>
+                        <div class="nameContainer">
+                            <h4 class="articleName">{{ article.name }}</h4>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </template>
+    {% endfor %}
+    <s-scroll id="hall" start="0" from="0" unit="px" global="--z"></s-scroll>
+    <div class="collection">
+        <div id="shop" class="content"></div>
+    </div>
+    <script type="text/javascript" src="{% static 'js/components.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+</body>
+</html>
